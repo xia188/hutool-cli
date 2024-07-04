@@ -13,7 +13,7 @@ interface Converter<T> {
     fun object2String(any: Any?): String
 
     companion object {
-
+		@Suppress("UNCHECKED_CAST")
         @JvmStatic
         fun getConverter(converterName: String?, type: Class<*>?): Converter<*>? {
             if (converterName?.isEmpty() != false) {

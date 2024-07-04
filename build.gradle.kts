@@ -12,7 +12,7 @@ allprojects {
         options.encoding = "UTF-8"
     }
 
-    val hutoolVersion = "5.7.22"
+    val hutoolVersion = "5.8.29"
     dependencies {
         apply(plugin = "org.jetbrains.kotlin.jvm")
         implementation("com.beust:jcommander:1.82")
@@ -40,6 +40,10 @@ allprojects {
 val group = "org.code4everything"
 val version = "1.6"
 val description = "hutool-cli"
+
+tasks.withType<Jar> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 
 tasks.jar {
     archiveFileName.set("hutool.jar")

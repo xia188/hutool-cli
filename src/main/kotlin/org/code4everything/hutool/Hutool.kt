@@ -3,7 +3,7 @@ package org.code4everything.hutool
 import cn.hutool.core.date.Week
 import cn.hutool.core.exceptions.ExceptionUtil
 import cn.hutool.core.io.FileUtil
-import cn.hutool.core.lang.Holder
+import cn.hutool.core.lang.mutable.MutableObj
 import cn.hutool.core.lang.JarClassLoader
 import cn.hutool.core.swing.clipboard.ClipboardUtil
 import cn.hutool.core.util.ArrayUtil
@@ -548,7 +548,7 @@ object Hutool {
         debugOutput("auto convert param[%s] to type: %s", p, type.name)
         return TypeUtils.cast(p, type, null)
     }
-
+	@Suppress("UNCHECKED_CAST")
     private fun getConverter(converterName: String?, type: Class<*>): Converter<*>? {
         if (converterName != null) {
             return Converter.getConverter(converterName, type)
@@ -617,7 +617,7 @@ object Hutool {
         val aliasJson = getAlias(path)
         filter(aliasJson)
         val joiner = StringJoiner("\n")
-        val maxLength = Holder.of(0)
+        val maxLength = MutableObj.of(0)
         val map = TreeMap<String, String>()
         aliasJson.keys.forEach(Consumer { k: String ->
             val length = k.length
@@ -726,7 +726,7 @@ object Hutool {
         }
         return ""
     }
-
+	@Suppress("UNCHECKED_CAST")
     fun convertResult(obj: Any?, converterName: String?): String {
         if (obj == null) {
             debugOutput("get null result, convert to empty")

@@ -6,7 +6,7 @@ import cn.hutool.core.date.DateTime
 import cn.hutool.core.date.DateUtil
 import cn.hutool.core.exceptions.ExceptionUtil
 import cn.hutool.core.io.FileUtil
-import cn.hutool.core.lang.Holder
+import cn.hutool.core.lang.mutable.MutableObj
 import cn.hutool.core.lang.JarClassLoader
 import cn.hutool.core.math.Calculator
 import cn.hutool.core.util.ClassUtil
@@ -172,7 +172,7 @@ object Utils {
         }
 
         val modifierList: MutableList<String> = ArrayList()
-        val holder = Holder.of("")
+        val holder = MutableObj.of("")
         val filter = MethodArg.getSubParams(Hutool.ARG, 1)
         Arrays.stream(fields).filter { e: Field ->
             if (isCollectionEmpty(filter)) {
